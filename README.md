@@ -26,7 +26,7 @@ Compile all the contracts
 ```
 truffle compile --all
 ```
-- Migrate the contracts
+Migrate the contracts
 ```
 truffle migrate --reset
 ```
