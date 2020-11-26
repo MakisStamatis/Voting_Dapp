@@ -155,7 +155,7 @@ class HomePage extends React.Component {
       <div className="App">
         {this.state.isOwner ? <NavBarAdmin /> : <NavBar />}
         <div className="welcome_dapp">
-          Welcome to Voting Dapp KIDDO
+          Welcome to Voting Dapp
         </div>
         <div className="Address">
           <p><span style={{fontWeight:"bold"}}>Your Wallet Address:</span> {this.state.account} </p>
