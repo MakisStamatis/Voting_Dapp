@@ -43,18 +43,6 @@ body {
 }
 
 
-.contract_address{
-  position:fixed;
-  bottom:0px;
-  padding:100px;
-  margin:0;
-  font-size: 30px;
-  text-align:center;
-  align-items: center;
-  width: 100%;
-
-}
-
 .btn-custom_green{
   color:black !important;
   background-color: green !important;

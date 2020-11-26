@@ -22,7 +22,6 @@ class HomePage extends React.Component {
       balance:null,
       abi:'',
       bytecode:'',
-      contract_address:null,
       elections_counter:null,
       elections_Names:[],
       election_name:null,
@@ -54,7 +53,6 @@ class HomePage extends React.Component {
       // Set web3, accounts,contract and balance to the state
       this.setState({web3: web3, account:accounts[0],VoteInstance: instance, balance:balance});
       this.setState({abi:VoteContract.abi, bytecode:VoteContract.bytecode});
-      this.setState({contract_address:VoteContract.networks[5777].address});
 
       const counter = await this.state.VoteInstance.methods.getElectionsCounter().call();
       this.setState({elections_counter:counter});
@@ -80,16 +78,21 @@ class HomePage extends React.Component {
   
   newElection = async event => {
     let found = false;
-    for(let i=0;i<this.state.elections_counter;i++){
-      if(this.state.elections_Names[i] === this.state.Election_name){
-        this.setState({error_msg:"There is already an election with this name"});
-        found = true;
-        break;
+    if(this.state.Election_name){
+      for(let i=0;i<this.state.elections_counter;i++){
+        if(this.state.elections_Names[i] === this.state.Election_name){
+          this.setState({error_msg:"There is already an election with this name"});
+          found = true;
+          break;
+        }
+      }
+      if(found === false){
+        await this.state.VoteInstance.methods.createElection(this.state.Election_name).send({from : this.state.account , gas: 1000000});
+        window.location.reload();
       }
     }
-    if(found === false){
-      await this.state.VoteInstance.methods.createElection(this.state.Election_name).send({from : this.state.account , gas: 1000000});
-      window.location.reload();
+    else{
+      this.setState({error_msg:"You must enter an election name"});
     }
   }
 
@@ -161,7 +164,6 @@ class HomePage extends React.Component {
           <p><span style={{fontWeight:"bold"}}>Your Wallet Address:</span> {this.state.account} </p>
           <p><span style={{fontWeight:"bold"}}>Your Balance:</span> {this.state.balance} Ether</p>
         </div>
-        <div>
         <Container>
           <Row>
           <Col md={{ span:4, offset:4}}>
@@ -187,22 +189,16 @@ class HomePage extends React.Component {
                   <Form.Label>Create New Election</Form.Label>
                   <Form.Control required type="text" placeholder="Enter Election Title" value = {this.state.name} onChange={this.updateElectionName}/>
                   <div className="error_msg">
-                  {this.state.error_msg}
+                    {this.state.error_msg}
                   </div>
-                </Form.Group>
-                <Button variant="primary" onClick={this.newElection}>
+                  <Button variant="primary" onClick={this.newElection}>
                   Create
                 </Button>
+                </Form.Group>
               </Form>
             </Col>
           </Row>
         </Container>
-        </div>
-        
-        
-        <div className="contract_address">
-        <p><span style={{fontWeight:"bold"}}>Contract Address: </span> {this.state.contract_address} </p>
-        </div>
       </div>
     );
   }
