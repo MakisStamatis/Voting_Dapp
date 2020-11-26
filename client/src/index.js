@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { Component }from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './bootstrap.min.css';
@@ -19,20 +19,24 @@ import Footer from './components/Footer';
 import { Router , Switch , Route } from 'react-router-dom';
 import history from './history'
 
+class App extends Component{
+    render() {
+        return(
+            <Router history={history}>
+                <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route path='/AddCandidate' component={AddCandidate} />
+                    <Route path='/Candidates' component={Candidates} />
+                    <Route path='/ApplyToVote' component={ApplyToVote} />
+                    <Route path='/VerifyVoter' component={VerifyVoter} />
+                    <Route path='/Vote' component={Vote} />
+                    <Route path='/Result' component={Result} />
+                    <Route path='/Start_End' component={Start_End} />
+                </Switch>
+                <Footer/>
+            </Router>
+        )
+    }
+}
 
-ReactDOM.render(
-    <Router history={history}>
-        <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path='/AddCandidate' component={AddCandidate} />
-            <Route path='/Candidates' component={Candidates} />
-            <Route path='/ApplyToVote' component={ApplyToVote} />
-            <Route path='/VerifyVoter' component={VerifyVoter} />
-            <Route path='/Vote' component={Vote} />
-            <Route path='/Result' component={Result} />
-            <Route path='/Start_End' component={Start_End} />
-        </Switch>
-        <Footer/>
-    </Router>,
-    document.getElementById('root')
-)
+ReactDOM.render(<App/> , document.getElementById('root'))

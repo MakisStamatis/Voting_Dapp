@@ -83,7 +83,6 @@ class AddCandidate extends React.Component {
   }
 
   render() {
-
     if(this.state.election_id === null){
       return (
         <div className="App">
@@ -94,7 +93,6 @@ class AddCandidate extends React.Component {
         </div>
       );
     }
-
     if (!this.state.web3) {
       return (
         <div className="App">
@@ -108,7 +106,6 @@ class AddCandidate extends React.Component {
         </div>
       );
     }
-
     if(!this.state.isOwner){
       return(
         <div className="App">
@@ -130,20 +127,20 @@ class AddCandidate extends React.Component {
     <Container>
       <Row>
         <Col md={{ span:4, offset:4}}>
-    <Form>
-      <Form.Group>
-        <Form.Label>Candidate Name</Form.Label>
-        <Form.Control required type="text" placeholder="Enter Name" value = {this.state.name} onChange={this.updateName}/>
-        <div className="error_msg">
-        {this.state.error_msg}
-        </div>
-      </Form.Group>
-      <Button variant="primary" onClick={this.addCandidate}>
-        Submit
-      </Button>
-    </Form>
-    </Col>
-    </Row>
+          <Form>
+            <Form.Group>
+              <Form.Label>Candidate Name</Form.Label>
+              <Form.Control required type="text" placeholder="Enter Name" value = {this.state.name} onChange={this.updateName}/>
+              <div className="error_msg">
+              {this.state.error_msg}
+              </div>
+            </Form.Group>
+            <Button variant="primary" onClick={this.addCandidate}>
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     </Container>
     <ElectionName/>
   </div>
