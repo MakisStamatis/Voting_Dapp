@@ -36,7 +36,6 @@ contract VoteContract {
    
    mapping(uint => Election) public Elections;
 
-
    constructor(){
       owner = msg.sender;
       ElectionsCounter = 0;

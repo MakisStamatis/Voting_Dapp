@@ -125,7 +125,6 @@ class Vote extends React.Component {
     }
   }
 
-
   render() {
     let candidateList;
     if(this.state.candidateList){

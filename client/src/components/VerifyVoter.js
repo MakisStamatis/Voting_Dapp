@@ -73,7 +73,6 @@ class VerifyVoter extends React.Component {
     }
   };
 
-  
 
   //Used to make the current NavBar element active 
   componentDidUpdate(){
