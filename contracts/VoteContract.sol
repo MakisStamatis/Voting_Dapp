@@ -192,7 +192,7 @@ contract VoteContract {
    }
 
    //get all the voters from a specific Election
-   function getVoters(uint _electionID) public onlyElectionAdmin(_electionID) view returns(Voter [] memory){
+   function getVoters(uint _electionID) public view returns(Voter [] memory){
       return Elections[_electionID].Election_Voters;
    }
 }

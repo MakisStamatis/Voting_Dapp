@@ -50,7 +50,6 @@ class Vote extends React.Component {
           await this.state.VoteInstance.methods.vote(this.state.candidateId,this.state.election_id).send({from : this.state.account , gas: 1000000});
           this.setState({error_msg:''});
           found = true;
-        
           window.location.reload(false);
           break;
         }

@@ -52,7 +52,6 @@ class VerifyVoter extends React.Component {
         // Set web3, accounts, and contract to the state
         this.setState({web3: web3,account: accounts[0], VoteInstance: instance});
 
-
         //populate the voters List
         let votersList = [];
         votersList = await this.state.VoteInstance.methods.getVoters(this.state.election_id).call();
